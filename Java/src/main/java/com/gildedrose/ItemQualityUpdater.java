@@ -12,7 +12,7 @@ class ItemQualityUpdater {
         ItemUpdateFactory itemUpdateFactory = new ItemUpdateFactory(item);
         final ItemUpdateStrategy itemUpdateStrategy = itemUpdateFactory.chooseItemUpdateStrategy();
 
-        item.sellIn = item.sellIn - itemUpdateStrategy.getSellInDaysDecrease();
         item.quality = item.quality + itemUpdateStrategy.getQualityChange(item.sellIn, item.quality);
+        item.sellIn = item.sellIn - itemUpdateStrategy.getSellInDaysDecrease();
     }
 }

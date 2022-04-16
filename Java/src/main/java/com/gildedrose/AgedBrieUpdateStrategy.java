@@ -8,9 +8,4 @@ class AgedBrieUpdateStrategy implements ItemUpdateStrategy {
         if (sellInDays > 0) return 1;
         else return 2;
     }
-
-    @Override
-    public int getSellInDaysDecrease() {
-        return 1;
-    }
 }

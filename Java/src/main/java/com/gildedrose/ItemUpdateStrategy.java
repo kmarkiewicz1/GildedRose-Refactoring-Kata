@@ -3,5 +3,7 @@ public interface ItemUpdateStrategy {
 
     int getQualityChange(int sellInDays, final int quality);
 
-    int getSellInDaysDecrease();
+    default int getSellInDaysDecrease() {
+        return 1;
+    }
 }
