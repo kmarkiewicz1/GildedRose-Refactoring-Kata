@@ -138,4 +138,29 @@ class GildedRoseTest {
             Arguments.of(0, 50, 0)
         );
     }
+
+    @ParameterizedTest
+    @MethodSource(value = "conjuredItemsQuality")
+    void conjuredItemsShouldDecreaseQualityTwiceAsFastAsNormalItems(int sellInDays, int quality, int expectedQuality) {
+        //given
+        Item[] items = new Item[]{new Item("Conjured", sellInDays, quality)};
+        GildedRose app = new GildedRose(items);
+
+        //when
+        app.updateQuality();
+
+        //then
+        assertThat(app.items[0].quality).isEqualTo(expectedQuality);
+    }
+
+    public static Stream<Arguments> conjuredItemsQuality() {
+        return Stream.of(// sellIn, quality, expectedQuality
+            Arguments.of(5, 30, 28),
+            Arguments.of(5, 5, 3),
+            Arguments.of(5, 0, 0),
+            Arguments.of(0, 30, 26),
+            Arguments.of(0, 5, 1),
+            Arguments.of(0, 0, 0)
+        );
+    }
 }
